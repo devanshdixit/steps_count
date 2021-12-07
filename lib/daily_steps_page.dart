@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-
+import 'package:percent_indicator/percent_indicator.dart';
 import 'package:pedometer/pedometer.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:steps_count/location_tracker.dart';
@@ -13,8 +13,10 @@ class MyApps extends StatefulWidget {
 class _MyAppsState extends State<MyApps> {
   late Stream<StepCount> _stepCountStream;
   late Stream<PedestrianStatus> _pedestrianStatusStream;
-  String _status = '?', _steps = '?';
-
+  String _status = '?';
+  double percentage = 0;
+  late Timer _timer;
+  int _start = 20, _steps = 0;
   @override
   void initState() {
     super.initState();
@@ -24,8 +26,15 @@ class _MyAppsState extends State<MyApps> {
   void onStepCount(StepCount event) {
     print(event);
     setState(() {
-      _steps = event.steps.toString();
+      _steps = _steps + 1;
+      percentage = ((event.steps / 10000) * 100).toDouble();
     });
+  }
+
+  @override
+  void dispose() {
+    _timer.cancel();
+    super.dispose();
   }
 
   void onPedestrianStatusChanged(PedestrianStatus event) {
@@ -33,6 +42,25 @@ class _MyAppsState extends State<MyApps> {
     setState(() {
       _status = event.status;
     });
+  }
+
+  void startTimer() {
+    const oneSec = Duration(seconds: 1);
+    _timer = Timer.periodic(
+      oneSec,
+      (Timer timer) {
+        if (_start == 0) {
+          setState(() {
+            timer.cancel();
+            _steps = 0;
+          });
+        } else {
+          setState(() {
+            _start--;
+          });
+        }
+      },
+    );
   }
 
   void onPedestrianStatusError(error) {
@@ -46,7 +74,7 @@ class _MyAppsState extends State<MyApps> {
   void onStepCountError(error) {
     print('onStepCountError: $error');
     setState(() {
-      _steps = 'Step Count not available';
+      _steps = -1;
     });
   }
 
@@ -82,43 +110,66 @@ class _MyAppsState extends State<MyApps> {
               const SizedBox(
                 height: 30,
               ),
-              const Text(
-                'Steps taken:',
-                style: TextStyle(fontSize: 30),
-              ),
-              Text(
-                _steps,
-                style: const TextStyle(fontSize: 60),
-              ),
-              const Divider(
-                height: 100,
-                thickness: 0,
-                color: Colors.white,
-              ),
-              const Text(
-                'Pedestrian status:',
-                style: TextStyle(fontSize: 30),
-              ),
-              Icon(
-                _status == 'walking'
-                    ? Icons.directions_walk
-                    : _status == 'stopped'
-                        ? Icons.accessibility_new
-                        : Icons.error,
-                size: 100,
-              ),
-              Center(
-                child: Text(
-                  _status,
-                  style: _status == 'walking' || _status == 'stopped'
-                      ? const TextStyle(fontSize: 30)
-                      : const TextStyle(fontSize: 20, color: Colors.red),
+              CircularPercentIndicator(
+                radius: 160.0,
+                lineWidth: 13.0,
+                animation: true,
+                percent: 0.7,
+                center: Text(
+                  _steps.toString(),
+                  style: const TextStyle(
+                    fontSize: 32.0,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
+                header: Column(
+                  children: const [
+                    Text(
+                      'Steps taken:',
+                      style: TextStyle(
+                        fontSize: 40.0,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 30,
+                    ),
+                  ],
+                ),
+                circularStrokeCap: CircularStrokeCap.round,
+                backgroundColor: Colors.blue.shade100,
+                progressColor:
+                    percentage > 50 ? Colors.blue.shade700 : Colors.red,
               ),
               const SizedBox(
                 height: 30,
               ),
-              Container(height: 300, child: BackMap())
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ElevatedButton(
+                    onPressed: () {
+                      startTimer();
+                    },
+                    child: Text("start"),
+                  ),
+                  const SizedBox(
+                    width: 30,
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      setState(() {
+                        percentage = percentage + 10;
+                      });
+                    },
+                    child: Text("Restart"),
+                  ),
+                ],
+              ),
+              Text("$_start"),
+              const SizedBox(
+                height: 30,
+              ),
+              SizedBox(height: 400, child: BackMap())
             ],
           ),
         ),

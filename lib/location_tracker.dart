@@ -61,6 +61,7 @@ class _BackMapState extends State<BackMap> {
         }
       }
     });
+    updatePinOnMap(location: currentLocation, completer: _controller);
     setState(() {
       maploading = false;
     });
