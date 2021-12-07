@@ -16,9 +16,10 @@ class _MyAppsState extends State<MyApps> {
   String _status = '?';
   double percentage = 0;
   late Timer _timer;
-  int _start = 20, _steps = 0;
+  int _start = 300, _steps = 0;
   @override
   void initState() {
+    startTimer();
     super.initState();
     initPlatformState();
   }
