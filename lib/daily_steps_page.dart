@@ -27,7 +27,7 @@ class _MyAppsState extends State<MyApps> {
     print(event);
     setState(() {
       _steps = _steps + 1;
-      percentage = ((event.steps / 10000) * 100).toDouble();
+      //  percentage = ((event.steps / 10000) * 100).toDouble();
     });
   }
 
@@ -102,6 +102,7 @@ class _MyAppsState extends State<MyApps> {
       home: Scaffold(
         appBar: AppBar(
           title: const Text('Pedometer example app'),
+          centerTitle: true,
         ),
         body: SingleChildScrollView(
           child: Column(
@@ -114,7 +115,7 @@ class _MyAppsState extends State<MyApps> {
                 radius: 160.0,
                 lineWidth: 13.0,
                 animation: true,
-                percent: 0.7,
+                percent: percentage,
                 center: Text(
                   _steps.toString(),
                   style: const TextStyle(
@@ -137,35 +138,36 @@ class _MyAppsState extends State<MyApps> {
                 ),
                 circularStrokeCap: CircularStrokeCap.round,
                 backgroundColor: Colors.blue.shade100,
-                progressColor:
-                    percentage > 50 ? Colors.blue.shade700 : Colors.red,
+                progressColor: Colors.blue.shade700,
               ),
               const SizedBox(
                 height: 30,
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  ElevatedButton(
-                    onPressed: () {
-                      startTimer();
-                    },
-                    child: Text("start"),
-                  ),
-                  const SizedBox(
-                    width: 30,
-                  ),
-                  ElevatedButton(
-                    onPressed: () {
-                      setState(() {
-                        percentage = percentage + 10;
-                      });
-                    },
-                    child: Text("Restart"),
-                  ),
-                ],
-              ),
-              Text("$_start"),
+              // Row(
+              //   mainAxisAlignment: MainAxisAlignment.center,
+              //   children: [
+              //     ElevatedButton(
+              //       onPressed: () {
+              //         setState(() {
+              //           percentage = percentage - 0.1;
+              //         });
+              //       },
+              //       child: Text("start"),
+              //     ),
+              //     const SizedBox(
+              //       width: 30,
+              //     ),
+              //     ElevatedButton(
+              //       onPressed: () {
+              //         setState(() {
+              //           percentage = percentage + 0.1;
+              //         });
+              //       },
+              //       child: Text("Restart"),
+              //     ),
+              //   ],
+              // ),
+              //Text("$_start"),
               const SizedBox(
                 height: 30,
               ),

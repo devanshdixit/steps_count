@@ -93,7 +93,7 @@ class _BackMapState extends State<BackMap> {
   @override
   Widget build(BuildContext context) {
     return maploading
-        ? LoadingScrren()
+        ? const LoadingScrren()
         : GoogleMap(
             myLocationEnabled: true,
             compassEnabled: true,
