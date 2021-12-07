@@ -17,6 +17,7 @@ class _MyAppsState extends State<MyApps> {
   String _status = '?';
   double percentage = 0;
   late Timer _timer;
+  int timehour = 0;
   int _start = 20, _steps = 0;
   List intervals = [
     {
@@ -59,9 +60,7 @@ class _MyAppsState extends State<MyApps> {
         if (_start == 0) {
           setState(() {
             timer.cancel();
-            intervals.add({
-              'steps': _steps,
-            });
+            data.add(FlSpot(1, (_start + 3).toDouble()));
             _steps = 0;
             _start = 20;
           });
@@ -70,6 +69,7 @@ class _MyAppsState extends State<MyApps> {
         } else {
           setState(() {
             _start--;
+            timehour = timehour + 5;
           });
         }
       },
@@ -109,6 +109,7 @@ class _MyAppsState extends State<MyApps> {
     if (!mounted) return;
   }
 
+  List<FlSpot> data = [];
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -182,7 +183,9 @@ class _MyAppsState extends State<MyApps> {
               //         },
               //       )
               //     : SizedBox(),
-              LineChartSample1(),
+              LineChartSample1(
+                datas: data,
+              ),
               // Row(
               //   mainAxisAlignment: MainAxisAlignment.center,
               //   children: [
@@ -221,8 +224,8 @@ class _MyAppsState extends State<MyApps> {
 }
 
 class LineChartSample1 extends StatefulWidget {
-  const LineChartSample1({Key? key}) : super(key: key);
-
+  LineChartSample1({Key? key, required this.datas}) : super(key: key);
+  List<FlSpot> datas;
   @override
   State<StatefulWidget> createState() => LineChartSample1State();
 }
@@ -275,7 +278,10 @@ class LineChartSample1State extends State<LineChartSample1> {
                 Expanded(
                   child: Padding(
                     padding: const EdgeInsets.only(right: 16.0, left: 6.0),
-                    child: _LineChart(isShowingMainData: !isShowingMainData),
+                    child: _LineChart(
+                      isShowingMainData: !isShowingMainData,
+                      data: widget.datas,
+                    ),
                   ),
                 ),
                 const SizedBox(
@@ -302,10 +308,10 @@ class LineChartSample1State extends State<LineChartSample1> {
 }
 
 class _LineChart extends StatelessWidget {
-  const _LineChart({required this.isShowingMainData});
+  _LineChart({required this.isShowingMainData, required this.data});
 
   final bool isShowingMainData;
-
+  List<FlSpot> data;
   @override
   Widget build(BuildContext context) {
     return LineChart(
@@ -512,15 +518,7 @@ class _LineChart extends StatelessWidget {
         isStrokeCapRound: true,
         dotData: FlDotData(show: false),
         belowBarData: BarAreaData(show: false),
-        spots: const [
-          FlSpot(1, 1),
-          FlSpot(3, 4),
-          FlSpot(5, 1.8),
-          FlSpot(7, 5),
-          FlSpot(10, 2),
-          FlSpot(12, 2.2),
-          FlSpot(13, 1.8),
-        ],
+        spots: data,
       );
 
   LineChartBarData get lineChartBarData2_2 => LineChartBarData(
