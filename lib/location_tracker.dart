@@ -4,11 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
-import 'package:permission_handler/permission_handler.dart';
 import 'package:steps_count/helpers.dart';
 
-const double CAMERA_ZOOM = 16;
-const double CAMERA_TILT = 80;
+const double CAMERA_ZOOM = 17;
+const double CAMERA_TILT = 0;
 const double CAMERA_BEARING = 30;
 
 class BackMap extends StatefulWidget {
@@ -25,7 +24,7 @@ class _BackMapState extends State<BackMap> {
   late Location location;
 
   CameraPosition initialLocation = CameraPosition(
-    zoom: 10,
+    zoom: CAMERA_ZOOM,
     bearing: CAMERA_BEARING,
     tilt: CAMERA_TILT,
     target: LatLng(42.6871386, -71.2143403),
@@ -48,23 +47,6 @@ class _BackMapState extends State<BackMap> {
     super.initState();
 
     beforeInitailtion();
-    location = Location();
-    locationData =
-        location.onLocationChanged.listen((LocationData? cLoc) async {
-      if (cLoc != null) {
-        final distance = calculateDistance(currentLocation.latitude,
-            currentLocation.longitude, cLoc.latitude, cLoc.longitude);
-        if (distance > 0.016) {
-          setState(() {
-            currentLocation = LatLng(cLoc.latitude!, cLoc.longitude!);
-          });
-        }
-      }
-    });
-    updatePinOnMap(location: currentLocation, completer: _controller);
-    setState(() {
-      maploading = false;
-    });
   }
 
   void beforeInitailtion() async {
@@ -74,14 +56,38 @@ class _BackMapState extends State<BackMap> {
         _currentPosition = position;
       });
     }
-    currentLocation =
-        LatLng(_currentPosition.latitude, _currentPosition.longitude);
+    setState(() {
+      currentLocation =
+          LatLng(_currentPosition.latitude, _currentPosition.longitude);
+    });
     initialLocation = CameraPosition(
       zoom: 10,
       bearing: CAMERA_BEARING,
       tilt: CAMERA_TILT,
       target: currentLocation,
     );
+
+    print('object2');
+    location = Location();
+    locationData =
+        location.onLocationChanged.listen((LocationData? cLoc) async {
+      if (cLoc != null) {
+        print('location changed');
+
+        updatePinOnMap(location: currentLocation, completer: _controller);
+        final distance = calculateDistance(currentLocation.latitude,
+            currentLocation.longitude, cLoc.latitude, cLoc.longitude);
+        if (distance > 0.016) {
+          setState(() {
+            currentLocation = LatLng(cLoc.latitude!, cLoc.longitude!);
+          });
+        }
+      }
+    });
+    print('object1');
+    setState(() {
+      maploading = false;
+    });
   }
 
   @override
@@ -121,7 +127,7 @@ class _BackMapState extends State<BackMap> {
       {required LatLng location,
       required Completer<GoogleMapController> completer}) async {
     CameraPosition cPosition = CameraPosition(
-      zoom: 10,
+      zoom: CAMERA_ZOOM,
       tilt: CAMERA_TILT,
       bearing: CAMERA_BEARING,
       target: LatLng(location.latitude, location.longitude),
