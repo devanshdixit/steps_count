@@ -15,27 +15,9 @@ class DashboardView extends StatelessWidget {
       onModelReady: (model) {
         model.startTimer();
         model.initPlatformState();
+        model.setProfilePic();
       },
       builder: (context, model, child) => Scaffold(
-        appBar: AppBar(
-          elevation: 0.0,
-          backgroundColor: Colors.grey.shade200,
-          actions: [
-            InkWell(
-              onTap: () => model.logout(),
-              child: Container(
-                width: 50,
-                height: 40,
-                decoration: const BoxDecoration(
-                  color: Colors.black,
-                  shape: BoxShape.circle,
-                ),
-                child: const Icon(Icons.person),
-              ),
-            ),
-            horizontalSpaceRegular,
-          ],
-        ),
         body: SingleChildScrollView(
           child: Container(
             color: Colors.grey.shade200,
@@ -44,6 +26,26 @@ class DashboardView extends StatelessWidget {
               children: <Widget>[
                 const SizedBox(
                   height: 30,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    InkWell(
+                      onTap: () => model.logout(),
+                      child: SizedBox(
+                        height: 50,
+                        width: 50,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(90.0),
+                          child: Image.network(
+                            model.profilepic,
+                            fit: BoxFit.contain,
+                          ),
+                        ),
+                      ),
+                    ),
+                    horizontalSpaceSmall,
+                  ],
                 ),
                 CircularPercentIndicator(
                   radius: 160.0,
@@ -86,9 +88,12 @@ class DashboardView extends StatelessWidget {
                   child: Column(
                     children: [
                       verticalSpaceMedium,
-                      IconButton(
-                        onPressed: () => model.testapi(),
-                        icon: Icon(Icons.edit),
+                      Container(
+                        color: Colors.red,
+                        child: IconButton(
+                          onPressed: () => model.testapi(),
+                          icon: Icon(Icons.edit, color: Colors.black),
+                        ),
                       ),
                       verticalSpaceRegular,
                       DurationWidget(

@@ -9,6 +9,7 @@ import 'package:steps_count/api/database_api.dart';
 import 'package:steps_count/app/app.locator.dart';
 import 'package:steps_count/app/app.logger.dart';
 import 'package:steps_count/app/app.router.dart';
+import 'package:steps_count/models/application_models.dart';
 import 'package:steps_count/services/user_service.dart';
 
 class DashboardViewModel extends BaseViewModel {
@@ -20,16 +21,16 @@ class DashboardViewModel extends BaseViewModel {
   late Stream<PedestrianStatus> _pedestrianStatusStream;
   String status = '?';
   double percentage = 0;
+  String profilepic = '';
   late Timer timer;
   int timehour = 0;
-  int start = 20, steps = 0;
+  int start = 300, steps = 0;
   List intervals = [
     {
       "steps": 0,
     }
   ];
   List<FlSpot> data = [];
-
   void onStepCount(StepCount event) {
     print(event);
     setSteps(steps + 1);
@@ -60,9 +61,16 @@ class DashboardViewModel extends BaseViewModel {
           timer.cancel();
           data.add(FlSpot(1, (start + 3).toDouble()));
           steps = 0;
-          start = 20;
-          notifyListeners();
+          start = 300;
 
+          notifyListeners();
+          _databaseApiService.updateSteps(
+            user: userService.currentUser!,
+            steps: {
+              "$start minutes": "${steps.toString()}",
+            },
+          );
+          log.v('Database updated');
           startTimer();
         } else {
           start--;
@@ -122,6 +130,16 @@ class DashboardViewModel extends BaseViewModel {
   }
 
   testapi() {
-    _databaseApiService.createUser(user: userService.currentUser!);
+    _databaseApiService.updateSteps(
+      user: userService.currentUser!,
+      steps: {
+        "5 minutes": '3',
+      },
+    );
+  }
+
+  void setProfilePic() {
+    profilepic = userService.currentUser!.photourl!;
+    notifyListeners();
   }
 }

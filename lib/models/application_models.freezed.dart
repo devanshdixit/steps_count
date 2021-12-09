@@ -13,73 +13,58 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-User _$UserFromJson(Map<String, dynamic> json) {
-  return _User.fromJson(json);
+Users _$UsersFromJson(Map<String, dynamic> json) {
+  return _Users.fromJson(json);
 }
 
 /// @nodoc
-class _$UserTearOff {
-  const _$UserTearOff();
+class _$UsersTearOff {
+  const _$UsersTearOff();
 
-  _User call(
-      {required String id,
-      String? email,
-      String? name,
-      String? photourl,
-      String? mobileNo,
-      List<dynamic>? notification}) {
-    return _User(
+  _Users call(
+      {required String id, String? email, String? name, String? photourl}) {
+    return _Users(
       id: id,
       email: email,
       name: name,
       photourl: photourl,
-      mobileNo: mobileNo,
-      notification: notification,
     );
   }
 
-  User fromJson(Map<String, Object> json) {
-    return User.fromJson(json);
+  Users fromJson(Map<String, Object> json) {
+    return Users.fromJson(json);
   }
 }
 
 /// @nodoc
-const $User = _$UserTearOff();
+const $Users = _$UsersTearOff();
 
 /// @nodoc
-mixin _$User {
+mixin _$Users {
   String get id => throw _privateConstructorUsedError;
   String? get email => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
   String? get photourl => throw _privateConstructorUsedError;
-  String? get mobileNo => throw _privateConstructorUsedError;
-  List<dynamic>? get notification => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $UserCopyWith<User> get copyWith => throw _privateConstructorUsedError;
+  $UsersCopyWith<Users> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $UserCopyWith<$Res> {
-  factory $UserCopyWith(User value, $Res Function(User) then) =
-      _$UserCopyWithImpl<$Res>;
-  $Res call(
-      {String id,
-      String? email,
-      String? name,
-      String? photourl,
-      String? mobileNo,
-      List<dynamic>? notification});
+abstract class $UsersCopyWith<$Res> {
+  factory $UsersCopyWith(Users value, $Res Function(Users) then) =
+      _$UsersCopyWithImpl<$Res>;
+  $Res call({String id, String? email, String? name, String? photourl});
 }
 
 /// @nodoc
-class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
-  _$UserCopyWithImpl(this._value, this._then);
+class _$UsersCopyWithImpl<$Res> implements $UsersCopyWith<$Res> {
+  _$UsersCopyWithImpl(this._value, this._then);
 
-  final User _value;
+  final Users _value;
   // ignore: unused_field
-  final $Res Function(User) _then;
+  final $Res Function(Users) _then;
 
   @override
   $Res call({
@@ -87,8 +72,6 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
     Object? email = freezed,
     Object? name = freezed,
     Object? photourl = freezed,
-    Object? mobileNo = freezed,
-    Object? notification = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -107,40 +90,26 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
           ? _value.photourl
           : photourl // ignore: cast_nullable_to_non_nullable
               as String?,
-      mobileNo: mobileNo == freezed
-          ? _value.mobileNo
-          : mobileNo // ignore: cast_nullable_to_non_nullable
-              as String?,
-      notification: notification == freezed
-          ? _value.notification
-          : notification // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>?,
     ));
   }
 }
 
 /// @nodoc
-abstract class _$UserCopyWith<$Res> implements $UserCopyWith<$Res> {
-  factory _$UserCopyWith(_User value, $Res Function(_User) then) =
-      __$UserCopyWithImpl<$Res>;
+abstract class _$UsersCopyWith<$Res> implements $UsersCopyWith<$Res> {
+  factory _$UsersCopyWith(_Users value, $Res Function(_Users) then) =
+      __$UsersCopyWithImpl<$Res>;
   @override
-  $Res call(
-      {String id,
-      String? email,
-      String? name,
-      String? photourl,
-      String? mobileNo,
-      List<dynamic>? notification});
+  $Res call({String id, String? email, String? name, String? photourl});
 }
 
 /// @nodoc
-class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
-    implements _$UserCopyWith<$Res> {
-  __$UserCopyWithImpl(_User _value, $Res Function(_User) _then)
-      : super(_value, (v) => _then(v as _User));
+class __$UsersCopyWithImpl<$Res> extends _$UsersCopyWithImpl<$Res>
+    implements _$UsersCopyWith<$Res> {
+  __$UsersCopyWithImpl(_Users _value, $Res Function(_Users) _then)
+      : super(_value, (v) => _then(v as _Users));
 
   @override
-  _User get _value => super._value as _User;
+  _Users get _value => super._value as _Users;
 
   @override
   $Res call({
@@ -148,10 +117,8 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
     Object? email = freezed,
     Object? name = freezed,
     Object? photourl = freezed,
-    Object? mobileNo = freezed,
-    Object? notification = freezed,
   }) {
-    return _then(_User(
+    return _then(_Users(
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -168,31 +135,18 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
           ? _value.photourl
           : photourl // ignore: cast_nullable_to_non_nullable
               as String?,
-      mobileNo: mobileNo == freezed
-          ? _value.mobileNo
-          : mobileNo // ignore: cast_nullable_to_non_nullable
-              as String?,
-      notification: notification == freezed
-          ? _value.notification
-          : notification // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>?,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$_User extends _User {
-  _$_User(
-      {required this.id,
-      this.email,
-      this.name,
-      this.photourl,
-      this.mobileNo,
-      this.notification})
+class _$_Users extends _Users {
+  _$_Users({required this.id, this.email, this.name, this.photourl})
       : super._();
 
-  factory _$_User.fromJson(Map<String, dynamic> json) => _$$_UserFromJson(json);
+  factory _$_Users.fromJson(Map<String, dynamic> json) =>
+      _$$_UsersFromJson(json);
 
   @override
   final String id;
@@ -202,20 +156,16 @@ class _$_User extends _User {
   final String? name;
   @override
   final String? photourl;
-  @override
-  final String? mobileNo;
-  @override
-  final List<dynamic>? notification;
 
   @override
   String toString() {
-    return 'User(id: $id, email: $email, name: $name, photourl: $photourl, mobileNo: $mobileNo, notification: $notification)';
+    return 'Users(id: $id, email: $email, name: $name, photourl: $photourl)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _User &&
+        (other is _Users &&
             (identical(other.id, id) ||
                 const DeepCollectionEquality().equals(other.id, id)) &&
             (identical(other.email, email) ||
@@ -224,13 +174,7 @@ class _$_User extends _User {
                 const DeepCollectionEquality().equals(other.name, name)) &&
             (identical(other.photourl, photourl) ||
                 const DeepCollectionEquality()
-                    .equals(other.photourl, photourl)) &&
-            (identical(other.mobileNo, mobileNo) ||
-                const DeepCollectionEquality()
-                    .equals(other.mobileNo, mobileNo)) &&
-            (identical(other.notification, notification) ||
-                const DeepCollectionEquality()
-                    .equals(other.notification, notification)));
+                    .equals(other.photourl, photourl)));
   }
 
   @override
@@ -239,32 +183,28 @@ class _$_User extends _User {
       const DeepCollectionEquality().hash(id) ^
       const DeepCollectionEquality().hash(email) ^
       const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(photourl) ^
-      const DeepCollectionEquality().hash(mobileNo) ^
-      const DeepCollectionEquality().hash(notification);
+      const DeepCollectionEquality().hash(photourl);
 
   @JsonKey(ignore: true)
   @override
-  _$UserCopyWith<_User> get copyWith =>
-      __$UserCopyWithImpl<_User>(this, _$identity);
+  _$UsersCopyWith<_Users> get copyWith =>
+      __$UsersCopyWithImpl<_Users>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_UserToJson(this);
+    return _$$_UsersToJson(this);
   }
 }
 
-abstract class _User extends User {
-  factory _User(
+abstract class _Users extends Users {
+  factory _Users(
       {required String id,
       String? email,
       String? name,
-      String? photourl,
-      String? mobileNo,
-      List<dynamic>? notification}) = _$_User;
-  _User._() : super._();
+      String? photourl}) = _$_Users;
+  _Users._() : super._();
 
-  factory _User.fromJson(Map<String, dynamic> json) = _$_User.fromJson;
+  factory _Users.fromJson(Map<String, dynamic> json) = _$_Users.fromJson;
 
   @override
   String get id => throw _privateConstructorUsedError;
@@ -275,10 +215,6 @@ abstract class _User extends User {
   @override
   String? get photourl => throw _privateConstructorUsedError;
   @override
-  String? get mobileNo => throw _privateConstructorUsedError;
-  @override
-  List<dynamic>? get notification => throw _privateConstructorUsedError;
-  @override
   @JsonKey(ignore: true)
-  _$UserCopyWith<_User> get copyWith => throw _privateConstructorUsedError;
+  _$UsersCopyWith<_Users> get copyWith => throw _privateConstructorUsedError;
 }

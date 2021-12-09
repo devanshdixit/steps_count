@@ -13,10 +13,11 @@ class StartUpViewModel extends BaseViewModel {
 
   Future<void> runStartupLogic() async {
     setBusy(true);
-    if (userService.hasLoggedInUser || userService.currentUser != null) {
+    if (userService.hasLoggedInUser) {
       log.v('We have a user session on disk. Sync the user profile ...');
       await userService.syncUserAccount();
-      log.v('User sync complete. User profile');
+      final currentUser = userService.currentUser;
+      log.v('User sync complete. User profile: $currentUser');
       setBusy(false);
       navigationService.replaceWith(Routes.dashboardView);
     } else {

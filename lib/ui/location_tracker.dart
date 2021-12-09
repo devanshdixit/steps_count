@@ -72,15 +72,14 @@ class _BackMapState extends State<BackMap> {
     locationData =
         location.onLocationChanged.listen((LocationData? cLoc) async {
       if (cLoc != null) {
-        print('location changed');
-
-        updatePinOnMap(location: currentLocation, completer: _controller);
         final distance = calculateDistance(currentLocation.latitude,
             currentLocation.longitude, cLoc.latitude, cLoc.longitude);
         if (distance > 0.016) {
           setState(() {
             currentLocation = LatLng(cLoc.latitude!, cLoc.longitude!);
           });
+
+          updatePinOnMap(location: currentLocation, completer: _controller);
         }
       }
     });

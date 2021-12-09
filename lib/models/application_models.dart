@@ -3,17 +3,15 @@ part 'application_models.freezed.dart';
 part 'application_models.g.dart';
 
 @freezed
-class User with _$User {
-  User._();
+class Users with _$Users {
+  Users._();
 
-  factory User({
+  factory Users({
     required String id,
     String? email,
     String? name,
     String? photourl,
-    String? mobileNo,
-    List? notification,
-  }) = _User;
+  }) = _Users;
 
-  factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
+  factory Users.fromJson(Map<String, dynamic> json) => _$UsersFromJson(json);
 }

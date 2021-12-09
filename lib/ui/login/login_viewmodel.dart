@@ -10,7 +10,7 @@ class LoginViewModel extends AuthenticationViewModel {
       locator<FirebaseAuthenticationService>();
   String pass = "admin";
   String animationType = "idle";
-  LoginViewModel() : super(successRoute: Routes.myApps);
+  LoginViewModel() : super(successRoute: Routes.dashboardView);
 
   updatePass(String val) {
     pass = val;

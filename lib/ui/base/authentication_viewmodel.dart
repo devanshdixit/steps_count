@@ -62,13 +62,12 @@ abstract class AuthenticationViewModel extends FormViewModel {
     if (!authResult.hasError && authResult.user != null) {
       final user = authResult.user!;
       await userService.syncOrCreateUserAccount(
-        user: User(
+        user: Users(
           id: user.uid,
           email: user.email,
           name: user.displayName ?? user.email,
           photourl: user.photoURL ??
               'https://img.icons8.com/color/48/000000/gender-neutral-user.png',
-          mobileNo: '',
         ),
       );
 

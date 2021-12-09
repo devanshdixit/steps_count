@@ -11,7 +11,6 @@ import 'package:steps_count/ui/startup/startup_view.dart';
 
 @StackedApp(
   routes: [
-    CupertinoRoute(page: MyApps),
     CupertinoRoute(page: StartUpView, initial: true),
     CupertinoRoute(page: LoginView),
     CupertinoRoute(page: DashboardView),

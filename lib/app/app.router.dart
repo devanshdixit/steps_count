@@ -11,18 +11,15 @@ import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
 
-import '../ui/daily_steps_page.dart';
 import '../ui/dashboard/dashboard_view.dart';
 import '../ui/login/login_view.dart';
 import '../ui/startup/startup_view.dart';
 
 class Routes {
-  static const String myApps = '/my-apps';
   static const String startUpView = '/';
   static const String loginView = '/login-view';
   static const String dashboardView = '/dashboard-view';
   static const all = <String>{
-    myApps,
     startUpView,
     loginView,
     dashboardView,
@@ -33,7 +30,6 @@ class StackedRouter extends RouterBase {
   @override
   List<RouteDef> get routes => _routes;
   final _routes = <RouteDef>[
-    RouteDef(Routes.myApps, page: MyApps),
     RouteDef(Routes.startUpView, page: StartUpView),
     RouteDef(Routes.loginView, page: LoginView),
     RouteDef(Routes.dashboardView, page: DashboardView),
@@ -41,12 +37,6 @@ class StackedRouter extends RouterBase {
   @override
   Map<Type, StackedRouteFactory> get pagesMap => _pagesMap;
   final _pagesMap = <Type, StackedRouteFactory>{
-    MyApps: (data) {
-      return CupertinoPageRoute<dynamic>(
-        builder: (context) => MyApps(),
-        settings: data,
-      );
-    },
     StartUpView: (data) {
       return CupertinoPageRoute<dynamic>(
         builder: (context) => const StartUpView(),

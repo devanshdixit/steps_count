@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:steps_count/ui/daily_steps_page.dart';
+import 'package:steps_count/ui/dashboard/dashboard_view.dart';
 
 class SignInScreen extends StatefulWidget {
   SignInScreen({Key? key}) : super(key: key);
@@ -30,7 +31,7 @@ class _SignInScreenState extends State<SignInScreen> {
 
       if (result != null) {
         Navigator.pushReplacement(
-            context, MaterialPageRoute(builder: (context) => MyApps()));
+            context, MaterialPageRoute(builder: (context) => DashboardView()));
       }
     }
   }

@@ -1,7 +1,7 @@
 class Assets {
   static String _imagesRoot = "assets/images/";
 
-  static String databaseApiLink = 'http://10.0.2.2:8000/';
+  static String databaseApiLink = 'http://10.0.2.2:8000';
 
   static const double fourBy1 = 4.0;
   static const double fourBy2 = 8.0;
