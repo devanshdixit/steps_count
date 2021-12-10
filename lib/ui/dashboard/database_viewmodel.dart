@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:fl_chart/fl_chart.dart';
 import 'package:pedometer/pedometer.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -9,8 +8,9 @@ import 'package:steps_count/api/database_api.dart';
 import 'package:steps_count/app/app.locator.dart';
 import 'package:steps_count/app/app.logger.dart';
 import 'package:steps_count/app/app.router.dart';
-import 'package:steps_count/models/application_models.dart';
 import 'package:steps_count/services/user_service.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:steps_count/main.dart';
 
 class DashboardViewModel extends BaseViewModel {
   final log = getLogger('DashboardViewModel');
@@ -130,16 +130,34 @@ class DashboardViewModel extends BaseViewModel {
   }
 
   testapi() {
-    _databaseApiService.updateSteps(
-      user: userService.currentUser!,
-      steps: {
-        "5 minutes": '3',
-      },
-    );
+    scheduleAlarm(DateTime.now());
   }
 
   void setProfilePic() {
     profilepic = userService.currentUser!.photourl!;
     notifyListeners();
+  }
+
+  void scheduleAlarm(DateTime scheduledNotificationDateTime) async {
+    var androidPlatformChannelSpecifics = const AndroidNotificationDetails(
+      'alarm_notif',
+      'alarm_notif',
+      icon: 'codex_logo',
+      sound: RawResourceAndroidNotificationSound('a_long_cold_sting'),
+      largeIcon: DrawableResourceAndroidBitmap('codex_logo'),
+    );
+
+    var iOSPlatformChannelSpecifics = const IOSNotificationDetails(
+      sound: 'a_long_cold_sting.wav',
+      presentAlert: true,
+      presentBadge: true,
+      presentSound: true,
+    );
+    var platformChannelSpecifics = NotificationDetails(
+        android: androidPlatformChannelSpecifics,
+        iOS: iOSPlatformChannelSpecifics);
+
+    await flutterLocalNotificationsPlugin.show(
+        0, 'Office', "alarmInfo.title", platformChannelSpecifics);
   }
 }

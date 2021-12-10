@@ -58,6 +58,7 @@ dependencies:
   url_strategy: ^0.2.0
   #Velocity
   velocity_x: ^3.0.0
+  flutter_local_notifications: ^9.1.5
 dev_dependencies:
   flutter_test:
     sdk: flutter
