@@ -109,7 +109,7 @@ class ShareView extends StatelessWidget {
                       height: 50,
                       width: 50,
                       decoration: BoxDecoration(
-                        color: Colors.white,
+                        color: Color.fromARGB(255, 191, 90, 242),
                         borderRadius: BorderRadius.circular(40),
                         border: Border.all(
                           color: Colors.grey,
@@ -122,7 +122,7 @@ class ShareView extends StatelessWidget {
                       height: 50,
                       width: 50,
                       decoration: BoxDecoration(
-                        color: Colors.white,
+                        color: Color.fromARGB(255, 191, 90, 242),
                         borderRadius: BorderRadius.circular(40),
                         border: Border.all(
                           color: Colors.grey,
@@ -135,7 +135,7 @@ class ShareView extends StatelessWidget {
                       height: 50,
                       width: 50,
                       decoration: BoxDecoration(
-                        color: Colors.white,
+                        color: Color.fromARGB(255, 191, 90, 242),
                         borderRadius: BorderRadius.circular(40),
                         border: Border.all(
                           color: Colors.grey,
@@ -154,7 +154,7 @@ class ShareView extends StatelessWidget {
                       height: 50,
                       width: 50,
                       decoration: BoxDecoration(
-                        color: Colors.white,
+                        color: Color.fromARGB(255, 191, 90, 242),
                         borderRadius: BorderRadius.circular(40),
                         border: Border.all(
                           color: Colors.grey,
@@ -167,7 +167,7 @@ class ShareView extends StatelessWidget {
                       height: 50,
                       width: 50,
                       decoration: BoxDecoration(
-                        color: Colors.white,
+                        color: Color.fromARGB(255, 191, 90, 242),
                         borderRadius: BorderRadius.circular(40),
                         border: Border.all(
                           color: Colors.grey,
@@ -180,7 +180,7 @@ class ShareView extends StatelessWidget {
                       height: 50,
                       width: 50,
                       decoration: BoxDecoration(
-                        color: Colors.white,
+                        color: Color.fromARGB(255, 191, 90, 242),
                         borderRadius: BorderRadius.circular(40),
                         border: Border.all(
                           color: Colors.grey,
@@ -206,7 +206,9 @@ class ShareView extends StatelessWidget {
                       decoration: InputDecoration(
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.all(Radius.circular(5.0)),
-                          borderSide: BorderSide(color: Colors.white),
+                          borderSide: BorderSide(
+                            color: Color.fromARGB(255, 191, 90, 242),
+                          ),
                         ),
                         labelStyle: TextStyle(
                           color: Colors.white,
@@ -221,6 +223,7 @@ class ShareView extends StatelessWidget {
                     model.navigateBack();
                   },
                   child: Card(
+                    elevation: 5,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20.0),
                     ),
