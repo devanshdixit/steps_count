@@ -13,16 +13,22 @@ import 'package:stacked/stacked_annotations.dart';
 
 import '../ui/dashboard/dashboard_view.dart';
 import '../ui/login/login_view.dart';
+import '../ui/newdashboard/newdashboard_view.dart';
+import '../ui/share/share_view.dart';
 import '../ui/startup/startup_view.dart';
 
 class Routes {
-  static const String startUpView = '/';
+  static const String startUpView = '/start-up-view';
   static const String loginView = '/login-view';
   static const String dashboardView = '/dashboard-view';
+  static const String newDashboardView = '/';
+  static const String shareView = '/share-view';
   static const all = <String>{
     startUpView,
     loginView,
     dashboardView,
+    newDashboardView,
+    shareView,
   };
 }
 
@@ -33,6 +39,8 @@ class StackedRouter extends RouterBase {
     RouteDef(Routes.startUpView, page: StartUpView),
     RouteDef(Routes.loginView, page: LoginView),
     RouteDef(Routes.dashboardView, page: DashboardView),
+    RouteDef(Routes.newDashboardView, page: NewDashboardView),
+    RouteDef(Routes.shareView, page: ShareView),
   ];
   @override
   Map<Type, StackedRouteFactory> get pagesMap => _pagesMap;
@@ -55,6 +63,18 @@ class StackedRouter extends RouterBase {
     DashboardView: (data) {
       return CupertinoPageRoute<dynamic>(
         builder: (context) => const DashboardView(),
+        settings: data,
+      );
+    },
+    NewDashboardView: (data) {
+      return CupertinoPageRoute<dynamic>(
+        builder: (context) => const NewDashboardView(),
+        settings: data,
+      );
+    },
+    ShareView: (data) {
+      return CupertinoPageRoute<dynamic>(
+        builder: (context) => const ShareView(),
         settings: data,
       );
     },

@@ -1,6 +1,13 @@
 class Assets {
   static String _imagesRoot = "assets/images/";
 
+  static String fb = _imagesRoot + 'fb.png';
+  static String insta = _imagesRoot + 'insta.png';
+  static String messenger = _imagesRoot + 'messanger.png';
+  static String reddit = _imagesRoot + 'reddit.png';
+  static String whatsapp = _imagesRoot + 'whatsapp.png';
+  static String yt = _imagesRoot + 'yt.png';
+
   static String databaseApiLink = 'http://10.0.2.2:8000';
 
   static const double fourBy1 = 4.0;

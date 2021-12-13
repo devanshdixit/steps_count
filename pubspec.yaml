@@ -59,6 +59,9 @@ dependencies:
   #Velocity
   velocity_x: ^3.0.0
   flutter_local_notifications: ^9.1.5
+  dotted_decoration: ^2.0.0
+  timeline_tile: ^2.0.0
+  curved_navigation_bar: ^1.0.1
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -91,6 +94,7 @@ flutter:
   assets:
     - assets/images/bicycle.png
     - assets/images/yoga.png
+    - assets/images/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

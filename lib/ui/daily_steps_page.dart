@@ -2,10 +2,7 @@ import 'dart:async';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/percent_indicator.dart';
-import 'package:pedometer/pedometer.dart';
-import 'package:permission_handler/permission_handler.dart';
-import 'package:steps_count/ui/location_tracker.dart';
-import 'package:steps_count/ui/ui_helpers.dart';
+import 'package:steps_count/ui/shared/ui_helpers.dart';
 
 class DurationWidget extends StatelessWidget {
   const DurationWidget({
