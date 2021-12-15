@@ -4,6 +4,7 @@ import 'package:stacked_services/stacked_services.dart';
 import 'package:steps_count/api/database_api.dart';
 import 'package:steps_count/services/distance.dart';
 import 'package:steps_count/services/user_service.dart';
+import 'package:steps_count/ui/buysell/buysell_view.dart';
 import 'package:steps_count/ui/dashboard/dashboard_view.dart';
 import 'package:steps_count/ui/login/login_view.dart';
 import 'package:steps_count/ui/newdashboard/newdashboard_view.dart';
@@ -17,6 +18,7 @@ import 'package:steps_count/ui/startup/startup_view.dart';
     CupertinoRoute(page: DashboardView),
     CupertinoRoute(page: NewDashboardView, initial: true),
     CupertinoRoute(page: ShareView),
+    CupertinoRoute(page: BuySellView),
   ],
   dependencies: [
     LazySingleton(classType: NavigationService),

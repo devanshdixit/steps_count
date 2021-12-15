@@ -203,6 +203,9 @@ class ShareView extends StatelessWidget {
                       vertical: 10,
                     ),
                     child: TextFormField(
+                      style: TextStyle(
+                        color: Colors.white,
+                      ),
                       decoration: InputDecoration(
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.all(Radius.circular(5.0)),

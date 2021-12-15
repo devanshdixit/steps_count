@@ -11,6 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
 
+import '../ui/buysell/buysell_view.dart';
 import '../ui/dashboard/dashboard_view.dart';
 import '../ui/login/login_view.dart';
 import '../ui/newdashboard/newdashboard_view.dart';
@@ -23,12 +24,14 @@ class Routes {
   static const String dashboardView = '/dashboard-view';
   static const String newDashboardView = '/';
   static const String shareView = '/share-view';
+  static const String buySellView = '/buy-sell-view';
   static const all = <String>{
     startUpView,
     loginView,
     dashboardView,
     newDashboardView,
     shareView,
+    buySellView,
   };
 }
 
@@ -41,6 +44,7 @@ class StackedRouter extends RouterBase {
     RouteDef(Routes.dashboardView, page: DashboardView),
     RouteDef(Routes.newDashboardView, page: NewDashboardView),
     RouteDef(Routes.shareView, page: ShareView),
+    RouteDef(Routes.buySellView, page: BuySellView),
   ];
   @override
   Map<Type, StackedRouteFactory> get pagesMap => _pagesMap;
@@ -75,6 +79,12 @@ class StackedRouter extends RouterBase {
     ShareView: (data) {
       return CupertinoPageRoute<dynamic>(
         builder: (context) => const ShareView(),
+        settings: data,
+      );
+    },
+    BuySellView: (data) {
+      return CupertinoPageRoute<dynamic>(
+        builder: (context) => const BuySellView(),
         settings: data,
       );
     },
