@@ -88,11 +88,13 @@ class BuySellViewModel extends BaseViewModel {
 
     fiti5EditingController.addListener(() {
       if (fiti5EditingController.text != '') {
-        double value = double.parse(fiti5EditingController.text);
-        prebonusToken = value * token;
-        percentageToken = 0;
-        totalToken = prebonusToken + percentageToken;
-        notifyListeners();
+        if (fiti5EditingController.text.length <= 10) {
+          double value = double.parse(fiti5EditingController.text);
+          prebonusToken = value * token;
+          percentageToken = 0;
+          totalToken = prebonusToken + percentageToken;
+          notifyListeners();
+        }
       }
     });
   }

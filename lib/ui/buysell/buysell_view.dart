@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:stacked/stacked.dart';
 import 'package:steps_count/ui/buysell/buysell_viewmodel.dart';
 import 'package:steps_count/ui/shared/ui_helpers.dart';
@@ -257,11 +258,14 @@ class BuySellView extends StatelessWidget {
                                     fontSize: 14,
                                   ),
                                 ),
-                                Text(
-                                  model.prebonusToken.toStringAsFixed(2),
-                                  style: const TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 14,
+                                SizedBox(
+                                  width: 80,
+                                  child: Text(
+                                    model.prebonusToken.toStringAsFixed(2),
+                                    style: const TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 14,
+                                    ),
                                   ),
                                 ),
                               ],
@@ -277,11 +281,14 @@ class BuySellView extends StatelessWidget {
                                     fontSize: 14,
                                   ),
                                 ),
-                                Text(
-                                  '+ ${model.percentageToken.toStringAsFixed(2)}',
-                                  style: const TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 14,
+                                SizedBox(
+                                  width: 80,
+                                  child: Text(
+                                    '+ ${model.percentageToken.toStringAsFixed(2)}',
+                                    style: const TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 14,
+                                    ),
                                   ),
                                 ),
                               ],
@@ -297,11 +304,14 @@ class BuySellView extends StatelessWidget {
                                     fontSize: 14,
                                   ),
                                 ),
-                                Text(
-                                  model.totalToken.toStringAsFixed(2),
-                                  style: const TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 14,
+                                SizedBox(
+                                  width: 80,
+                                  child: Text(
+                                    model.totalToken.toStringAsFixed(2),
+                                    style: const TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 14,
+                                    ),
                                   ),
                                 ),
                               ],
@@ -311,360 +321,6 @@ class BuySellView extends StatelessWidget {
                       ),
                     ],
                   ),
-                  // ),
-                  // Row(
-                  //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  //   children: [
-                  //     GestureDetector(
-                  //       onTap: () {
-                  //         model.setChooseVal('BTC');
-                  //       },
-                  //       child: Container(
-                  //         width: 170,
-                  //         decoration: BoxDecoration(
-                  //           border: Border.all(
-                  //             color: model.chosenValue == 'BTC'
-                  //                 ? const Color.fromARGB(255, 191, 90, 242)
-                  //                 : Colors.grey,
-                  //             width: 1,
-                  //           ),
-                  //           borderRadius: BorderRadius.circular(10),
-                  //         ),
-                  //         padding: const EdgeInsets.all(20),
-                  //         child: Column(
-                  //           children: [
-                  //             const Text(
-                  //               'BTC',
-                  //               style: TextStyle(
-                  //                 color: Colors.white,
-                  //                 fontSize: 24,
-                  //               ),
-                  //             ),
-                  //             verticalSpaceRegular,
-                  //             Row(
-                  //               mainAxisAlignment: MainAxisAlignment.center,
-                  //               children: const [
-                  //                 Text(
-                  //                   '0.00013',
-                  //                   style: TextStyle(
-                  //                     fontSize: 20,
-                  //                     color: Colors.green,
-                  //                   ),
-                  //                 ),
-                  //                 horizontalSpaceSmall,
-                  //                 Icon(
-                  //                   Icons.arrow_upward,
-                  //                   color: Colors.green,
-                  //                   size: 16,
-                  //                 ),
-                  //                 Text(
-                  //                   '23%',
-                  //                   style: TextStyle(
-                  //                     fontSize: 12,
-                  //                     color: Colors.white,
-                  //                   ),
-                  //                 ),
-                  //               ],
-                  //             ),
-                  //           ],
-                  //         ),
-                  //       ),
-                  //     ),
-                  //     GestureDetector(
-                  //       onTap: () {
-                  //         model.setChooseVal('ETH');
-                  //       },
-                  //       child: Container(
-                  //         width: 170,
-                  //         decoration: BoxDecoration(
-                  //           border: Border.all(
-                  //             color: model.chosenValue == 'ETH'
-                  //                 ? const Color.fromARGB(255, 191, 90, 242)
-                  //                 : Colors.grey,
-                  //             width: 1,
-                  //           ),
-                  //           borderRadius: BorderRadius.circular(10),
-                  //         ),
-                  //         padding: const EdgeInsets.all(20),
-                  //         child: Column(
-                  //           children: [
-                  //             const Text(
-                  //               'ETH',
-                  //               style: TextStyle(
-                  //                 color: Colors.white,
-                  //                 fontSize: 24,
-                  //               ),
-                  //             ),
-                  //             verticalSpaceRegular,
-                  //             Row(
-                  //               mainAxisAlignment: MainAxisAlignment.center,
-                  //               children: const [
-                  //                 Text(
-                  //                   '0.00003',
-                  //                   style: TextStyle(
-                  //                     fontSize: 20,
-                  //                     color: Colors.red,
-                  //                   ),
-                  //                 ),
-                  //                 horizontalSpaceSmall,
-                  //                 Icon(
-                  //                   Icons.arrow_downward,
-                  //                   color: Colors.red,
-                  //                   size: 16,
-                  //                 ),
-                  //                 Text(
-                  //                   '13%',
-                  //                   style: TextStyle(
-                  //                     fontSize: 12,
-                  //                     color: Colors.white,
-                  //                   ),
-                  //                 ),
-                  //               ],
-                  //             ),
-                  //           ],
-                  //         ),
-                  //       ),
-                  //     ),
-                  //   ],
-                  // ),
-                  // verticalSpaceRegular,
-                  // Row(
-                  //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  //   children: [
-                  //     GestureDetector(
-                  //       onTap: () {
-                  //         model.setChooseVal('USDT');
-                  //       },
-                  //       child: Container(
-                  //         width: 170,
-                  //         decoration: BoxDecoration(
-                  //           border: Border.all(
-                  //             color: model.chosenValue == 'USDT'
-                  //                 ? const Color.fromARGB(255, 191, 90, 242)
-                  //                 : Colors.grey,
-                  //             width: 1,
-                  //           ),
-                  //           borderRadius: BorderRadius.circular(10),
-                  //         ),
-                  //         padding: const EdgeInsets.all(20),
-                  //         child: Column(
-                  //           children: [
-                  //             const Text(
-                  //               'USDT',
-                  //               style: TextStyle(
-                  //                 color: Colors.white,
-                  //                 fontSize: 24,
-                  //               ),
-                  //             ),
-                  //             verticalSpaceRegular,
-                  //             Row(
-                  //               mainAxisAlignment: MainAxisAlignment.center,
-                  //               children: const [
-                  //                 Text(
-                  //                   '0.013',
-                  //                   style: TextStyle(
-                  //                     fontSize: 20,
-                  //                     color: Colors.red,
-                  //                   ),
-                  //                 ),
-                  //                 horizontalSpaceSmall,
-                  //                 Icon(
-                  //                   Icons.arrow_downward,
-                  //                   color: Colors.red,
-                  //                   size: 16,
-                  //                 ),
-                  //                 Text(
-                  //                   '3%',
-                  //                   style: TextStyle(
-                  //                     fontSize: 12,
-                  //                     color: Colors.white,
-                  //                   ),
-                  //                 ),
-                  //               ],
-                  //             ),
-                  //           ],
-                  //         ),
-                  //       ),
-                  //     ),
-                  //     GestureDetector(
-                  //       onTap: () {
-                  //         model.setChooseVal('INR');
-                  //       },
-                  //       child: Container(
-                  //         width: 170,
-                  //         decoration: BoxDecoration(
-                  //           border: Border.all(
-                  //             color: model.chosenValue == 'INR'
-                  //                 ? const Color.fromARGB(255, 191, 90, 242)
-                  //                 : Colors.grey,
-                  //             width: 1,
-                  //           ),
-                  //           borderRadius: BorderRadius.circular(10),
-                  //         ),
-                  //         padding: const EdgeInsets.all(20),
-                  //         child: Column(
-                  //           children: [
-                  //             const Text(
-                  //               'INR',
-                  //               style: TextStyle(
-                  //                 color: Colors.white,
-                  //                 fontSize: 24,
-                  //               ),
-                  //             ),
-                  //             verticalSpaceRegular,
-                  //             Row(
-                  //               mainAxisAlignment: MainAxisAlignment.center,
-                  //               children: const [
-                  //                 Text(
-                  //                   '0.0125',
-                  //                   style: TextStyle(
-                  //                     fontSize: 20,
-                  //                     color: Colors.green,
-                  //                   ),
-                  //                 ),
-                  //                 horizontalSpaceSmall,
-                  //                 Icon(
-                  //                   Icons.arrow_upward,
-                  //                   color: Colors.green,
-                  //                   size: 16,
-                  //                 ),
-                  //                 Text(
-                  //                   '4%',
-                  //                   style: TextStyle(
-                  //                     fontSize: 12,
-                  //                     color: Colors.white,
-                  //                   ),
-                  //                 ),
-                  //               ],
-                  //             ),
-                  //           ],
-                  //         ),
-                  //       ),
-                  //     ),
-                  //   ],
-                  // ),
-                  // verticalSpaceMedium,
-                  // Card(
-                  //   shape: RoundedRectangleBorder(
-                  //     borderRadius: BorderRadius.circular(20.0),
-                  //   ),
-                  //   color: const Color.fromRGBO(28, 28, 30, 1),
-                  //   child: Container(
-                  //     padding: const EdgeInsets.symmetric(
-                  //       horizontal: 20,
-                  //       vertical: 10,
-                  //     ),
-                  //     child: Row(
-                  //       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  //       children: [
-                  //         Container(
-                  //           padding: const EdgeInsets.symmetric(
-                  //             horizontal: 10,
-                  //             vertical: 5,
-                  //           ),
-                  //           width: 120,
-                  //           child: TextFormField(
-                  //             controller: model.covertedEditingController,
-                  //             style: const TextStyle(
-                  //               color: Colors.white,
-                  //             ),
-                  //             keyboardType: TextInputType.number,
-                  //             decoration: const InputDecoration(
-                  //               focusedBorder: OutlineInputBorder(
-                  //                 borderRadius:
-                  //                     BorderRadius.all(Radius.circular(5.0)),
-                  //                 borderSide: BorderSide(
-                  //                   color: Color.fromARGB(255, 191, 90, 242),
-                  //                 ),
-                  //               ),
-                  //               labelStyle: TextStyle(
-                  //                 color: Colors.white,
-                  //                 letterSpacing: 1,
-                  //               ),
-                  //               label: Text('USD'),
-                  //             ),
-                  //           ),
-                  //         ),
-                  //         const Icon(
-                  //           Icons.compare_arrows,
-                  //           color: Colors.white,
-                  //         ),
-                  //         Container(
-                  //           padding: const EdgeInsets.symmetric(
-                  //             horizontal: 10,
-                  //             vertical: 5,
-                  //           ),
-                  //           width: 120,
-                  //           child: Column(
-                  //             crossAxisAlignment: CrossAxisAlignment.start,
-                  //             children: [
-                  //               const Text(
-                  //                 'Fiti5 tokens',
-                  //                 style: TextStyle(
-                  //                   color: Colors.white,
-                  //                   letterSpacing: 1,
-                  //                 ),
-                  //               ),
-                  //               verticalSpaceSmall,
-                  //               Text(
-                  //                 model.fiti5EditingController.text.toString(),
-                  //                 style: const TextStyle(
-                  //                   color: Colors.white,
-                  //                   fontSize: 18,
-                  //                 ),
-                  //               ),
-                  //             ],
-                  //           ),
-                  //           // TextFormField(
-                  //           //   controller: model.fiti5EditingController,
-                  //           //   style: const TextStyle(
-                  //           //     color: Colors.white,
-                  //           //   ),
-                  //           //   keyboardType: TextInputType.number,
-                  //           //   decoration: const InputDecoration(
-                  //           //     focusedBorder: OutlineInputBorder(
-                  //           //       borderRadius:
-                  //           //           BorderRadius.all(Radius.circular(5.0)),
-                  //           //       borderSide: BorderSide(
-                  //           //         color: Color.fromARGB(255, 191, 90, 242),
-                  //           //       ),
-                  //           //     ),
-                  //           //     labelStyle: TextStyle(
-                  //           //       color: Colors.white,
-                  //           //       letterSpacing: 1,
-                  //           //     ),
-                  //           //     label: Text('FITI5 Tokens'),
-                  //           //   ),
-                  //           // ),
-                  //         ),
-                  //       ],
-                  //     ),
-                  //   ),
-                  // ),
-                  // Card(
-                  //   shape: RoundedRectangleBorder(
-                  //     borderRadius: BorderRadius.circular(20.0),
-                  //   ),
-                  //   color: const Color.fromRGBO(28, 28, 30, 1),
-                  //   child: Row(
-                  //     children: [
-                  //       Container(
-                  //         padding: const EdgeInsets.symmetric(
-                  //           horizontal: 20,
-                  //           vertical: 10,
-                  //         ),
-                  //         child: const Text(
-                  //           '* dollar 100 minimum contribution requires!',
-                  //           style: TextStyle(
-                  //             color: Colors.red,
-                  //             fontSize: 12,
-                  //           ),
-                  //         ),
-                  //       ),
-                  //     ],
-                  //   ),
-                  // ),
-                  // verticalSpaceMedium,
                   verticalSpaceRegular,
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -829,6 +485,7 @@ class BuySellView extends StatelessWidget {
                               color: Colors.white,
                             ),
                             keyboardType: TextInputType.number,
+                            maxLength: 10,
                             decoration: const InputDecoration(
                               focusedBorder: OutlineInputBorder(
                                 borderRadius:

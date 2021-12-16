@@ -7,6 +7,7 @@ import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:stacked/stacked.dart';
 import 'package:steps_count/ui/buysell/buysell_view.dart';
 import 'package:steps_count/ui/newdashboard/newdashboard_viewmodel.dart';
+import 'package:steps_count/ui/profile/profile_view.dart';
 import 'package:steps_count/ui/shared/ui_helpers.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 
@@ -16,8 +17,13 @@ class NewDashboardView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<NewDashboardViewModel>.reactive(
+      onModelReady: (model) {
+        model.startTimer();
+        model.initPlatformState();
+      },
       builder: (context, model, child) => Scaffold(
         appBar: AppBar(
+          elevation: 0.0,
           backgroundColor: const Color.fromRGBO(28, 28, 30, 1),
           title: Padding(
             padding: const EdgeInsets.only(left: 8.0),
@@ -39,9 +45,11 @@ class NewDashboardView extends StatelessWidget {
         backgroundColor: Colors.black,
         body: model.bottomNavigator == 2
             ? BuySellView()
-            : Home(
-                model: model,
-              ),
+            : model.bottomNavigator == 4
+                ? ProfileView()
+                : Home(
+                    model: model,
+                  ),
         bottomNavigationBar: CurvedNavigationBar(
           index: model.bottomNavigator,
           height: 50.0,
@@ -176,18 +184,18 @@ class Home extends StatelessWidget {
                           radius: 140.0,
                           lineWidth: 8.0,
                           animation: true,
-                          percent: 0.7,
+                          percent: model.percentage,
                           center: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
-                            children: const [
+                            children: [
                               Text(
-                                '05',
+                                model.steps.toString(),
                                 style: TextStyle(
                                   fontSize: 32.0,
                                   color: Colors.white,
                                 ),
                               ),
-                              Text(
+                              const Text(
                                 'Total Steps:',
                                 style: TextStyle(
                                   fontSize: 12.0,
@@ -299,9 +307,11 @@ class Home extends StatelessWidget {
                               children: [
                                 Container(
                                   decoration: const BoxDecoration(
-                                      color: Colors.deepPurple,
-                                      borderRadius: BorderRadius.all(
-                                          Radius.circular(20))),
+                                    color: Colors.deepPurple,
+                                    borderRadius: BorderRadius.all(
+                                      Radius.circular(20),
+                                    ),
+                                  ),
                                   width: 15,
                                   height: 15,
                                 ),
