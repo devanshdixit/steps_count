@@ -9,8 +9,12 @@ class Users with _$Users {
   factory Users({
     required String id,
     String? email,
-    String? name,
+    String? userName,
     String? photourl,
+    String? telegramId,
+    String? createdAt,
+    String? updatedAt,
+    String? emailVerified,
   }) = _Users;
 
   factory Users.fromJson(Map<String, dynamic> json) => _$UsersFromJson(json);

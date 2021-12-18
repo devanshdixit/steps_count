@@ -7,8 +7,11 @@ class Assets {
   static String reddit = _imagesRoot + 'reddit.png';
   static String whatsapp = _imagesRoot + 'whatsapp.png';
   static String yt = _imagesRoot + 'yt.png';
+  static String done = 'assets/done.json';
+  static String edit = 'assets/edit.json';
+  static String email = 'assets/email.json';
 
-  static String databaseApiLink = 'http://10.0.2.2:8000';
+  static String databaseApiLink = 'https://fiti5.formulupmarketing.com/api';
 
   static const double fourBy1 = 4.0;
   static const double fourBy2 = 8.0;

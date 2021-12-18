@@ -10,14 +10,20 @@ class StartUpView extends StatelessWidget {
   Widget build(BuildContext context) {
     return ViewModelBuilder<StartUpViewModel>.reactive(
       onModelReady: (model) async {
-        SchedulerBinding.instance?.addPostFrameCallback((timeStamp) async {
-          await model.runStartupLogic();
-        });
+        SchedulerBinding.instance?.addPostFrameCallback(
+          (timeStamp) async {
+            await model.runStartupLogic();
+          },
+        );
       },
       builder: (context, model, child) => const Scaffold(
-          body: Center(
-        child: CircularProgressIndicator(),
-      )),
+        backgroundColor: Colors.black,
+        body: Center(
+          child: CircularProgressIndicator(
+            color: Colors.white,
+          ),
+        ),
+      ),
       viewModelBuilder: () => StartUpViewModel(),
     );
   }

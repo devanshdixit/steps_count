@@ -22,12 +22,23 @@ class _$UsersTearOff {
   const _$UsersTearOff();
 
   _Users call(
-      {required String id, String? email, String? name, String? photourl}) {
+      {required String id,
+      String? email,
+      String? userName,
+      String? photourl,
+      String? telegramId,
+      String? createdAt,
+      String? updatedAt,
+      String? emailVerified}) {
     return _Users(
       id: id,
       email: email,
-      name: name,
+      userName: userName,
       photourl: photourl,
+      telegramId: telegramId,
+      createdAt: createdAt,
+      updatedAt: updatedAt,
+      emailVerified: emailVerified,
     );
   }
 
@@ -43,8 +54,12 @@ const $Users = _$UsersTearOff();
 mixin _$Users {
   String get id => throw _privateConstructorUsedError;
   String? get email => throw _privateConstructorUsedError;
-  String? get name => throw _privateConstructorUsedError;
+  String? get userName => throw _privateConstructorUsedError;
   String? get photourl => throw _privateConstructorUsedError;
+  String? get telegramId => throw _privateConstructorUsedError;
+  String? get createdAt => throw _privateConstructorUsedError;
+  String? get updatedAt => throw _privateConstructorUsedError;
+  String? get emailVerified => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -55,7 +70,15 @@ mixin _$Users {
 abstract class $UsersCopyWith<$Res> {
   factory $UsersCopyWith(Users value, $Res Function(Users) then) =
       _$UsersCopyWithImpl<$Res>;
-  $Res call({String id, String? email, String? name, String? photourl});
+  $Res call(
+      {String id,
+      String? email,
+      String? userName,
+      String? photourl,
+      String? telegramId,
+      String? createdAt,
+      String? updatedAt,
+      String? emailVerified});
 }
 
 /// @nodoc
@@ -70,8 +93,12 @@ class _$UsersCopyWithImpl<$Res> implements $UsersCopyWith<$Res> {
   $Res call({
     Object? id = freezed,
     Object? email = freezed,
-    Object? name = freezed,
+    Object? userName = freezed,
     Object? photourl = freezed,
+    Object? telegramId = freezed,
+    Object? createdAt = freezed,
+    Object? updatedAt = freezed,
+    Object? emailVerified = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -82,13 +109,29 @@ class _$UsersCopyWithImpl<$Res> implements $UsersCopyWith<$Res> {
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String?,
-      name: name == freezed
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
+      userName: userName == freezed
+          ? _value.userName
+          : userName // ignore: cast_nullable_to_non_nullable
               as String?,
       photourl: photourl == freezed
           ? _value.photourl
           : photourl // ignore: cast_nullable_to_non_nullable
+              as String?,
+      telegramId: telegramId == freezed
+          ? _value.telegramId
+          : telegramId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdAt: createdAt == freezed
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as String?,
+      updatedAt: updatedAt == freezed
+          ? _value.updatedAt
+          : updatedAt // ignore: cast_nullable_to_non_nullable
+              as String?,
+      emailVerified: emailVerified == freezed
+          ? _value.emailVerified
+          : emailVerified // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
@@ -99,7 +142,15 @@ abstract class _$UsersCopyWith<$Res> implements $UsersCopyWith<$Res> {
   factory _$UsersCopyWith(_Users value, $Res Function(_Users) then) =
       __$UsersCopyWithImpl<$Res>;
   @override
-  $Res call({String id, String? email, String? name, String? photourl});
+  $Res call(
+      {String id,
+      String? email,
+      String? userName,
+      String? photourl,
+      String? telegramId,
+      String? createdAt,
+      String? updatedAt,
+      String? emailVerified});
 }
 
 /// @nodoc
@@ -115,8 +166,12 @@ class __$UsersCopyWithImpl<$Res> extends _$UsersCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? email = freezed,
-    Object? name = freezed,
+    Object? userName = freezed,
     Object? photourl = freezed,
+    Object? telegramId = freezed,
+    Object? createdAt = freezed,
+    Object? updatedAt = freezed,
+    Object? emailVerified = freezed,
   }) {
     return _then(_Users(
       id: id == freezed
@@ -127,13 +182,29 @@ class __$UsersCopyWithImpl<$Res> extends _$UsersCopyWithImpl<$Res>
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String?,
-      name: name == freezed
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
+      userName: userName == freezed
+          ? _value.userName
+          : userName // ignore: cast_nullable_to_non_nullable
               as String?,
       photourl: photourl == freezed
           ? _value.photourl
           : photourl // ignore: cast_nullable_to_non_nullable
+              as String?,
+      telegramId: telegramId == freezed
+          ? _value.telegramId
+          : telegramId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdAt: createdAt == freezed
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as String?,
+      updatedAt: updatedAt == freezed
+          ? _value.updatedAt
+          : updatedAt // ignore: cast_nullable_to_non_nullable
+              as String?,
+      emailVerified: emailVerified == freezed
+          ? _value.emailVerified
+          : emailVerified // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
@@ -142,7 +213,15 @@ class __$UsersCopyWithImpl<$Res> extends _$UsersCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_Users extends _Users {
-  _$_Users({required this.id, this.email, this.name, this.photourl})
+  _$_Users(
+      {required this.id,
+      this.email,
+      this.userName,
+      this.photourl,
+      this.telegramId,
+      this.createdAt,
+      this.updatedAt,
+      this.emailVerified})
       : super._();
 
   factory _$_Users.fromJson(Map<String, dynamic> json) =>
@@ -153,13 +232,21 @@ class _$_Users extends _Users {
   @override
   final String? email;
   @override
-  final String? name;
+  final String? userName;
   @override
   final String? photourl;
+  @override
+  final String? telegramId;
+  @override
+  final String? createdAt;
+  @override
+  final String? updatedAt;
+  @override
+  final String? emailVerified;
 
   @override
   String toString() {
-    return 'Users(id: $id, email: $email, name: $name, photourl: $photourl)';
+    return 'Users(id: $id, email: $email, userName: $userName, photourl: $photourl, telegramId: $telegramId, createdAt: $createdAt, updatedAt: $updatedAt, emailVerified: $emailVerified)';
   }
 
   @override
@@ -170,11 +257,24 @@ class _$_Users extends _Users {
                 const DeepCollectionEquality().equals(other.id, id)) &&
             (identical(other.email, email) ||
                 const DeepCollectionEquality().equals(other.email, email)) &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
+            (identical(other.userName, userName) ||
+                const DeepCollectionEquality()
+                    .equals(other.userName, userName)) &&
             (identical(other.photourl, photourl) ||
                 const DeepCollectionEquality()
-                    .equals(other.photourl, photourl)));
+                    .equals(other.photourl, photourl)) &&
+            (identical(other.telegramId, telegramId) ||
+                const DeepCollectionEquality()
+                    .equals(other.telegramId, telegramId)) &&
+            (identical(other.createdAt, createdAt) ||
+                const DeepCollectionEquality()
+                    .equals(other.createdAt, createdAt)) &&
+            (identical(other.updatedAt, updatedAt) ||
+                const DeepCollectionEquality()
+                    .equals(other.updatedAt, updatedAt)) &&
+            (identical(other.emailVerified, emailVerified) ||
+                const DeepCollectionEquality()
+                    .equals(other.emailVerified, emailVerified)));
   }
 
   @override
@@ -182,8 +282,12 @@ class _$_Users extends _Users {
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(id) ^
       const DeepCollectionEquality().hash(email) ^
-      const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(photourl);
+      const DeepCollectionEquality().hash(userName) ^
+      const DeepCollectionEquality().hash(photourl) ^
+      const DeepCollectionEquality().hash(telegramId) ^
+      const DeepCollectionEquality().hash(createdAt) ^
+      const DeepCollectionEquality().hash(updatedAt) ^
+      const DeepCollectionEquality().hash(emailVerified);
 
   @JsonKey(ignore: true)
   @override
@@ -200,8 +304,12 @@ abstract class _Users extends Users {
   factory _Users(
       {required String id,
       String? email,
-      String? name,
-      String? photourl}) = _$_Users;
+      String? userName,
+      String? photourl,
+      String? telegramId,
+      String? createdAt,
+      String? updatedAt,
+      String? emailVerified}) = _$_Users;
   _Users._() : super._();
 
   factory _Users.fromJson(Map<String, dynamic> json) = _$_Users.fromJson;
@@ -211,9 +319,17 @@ abstract class _Users extends Users {
   @override
   String? get email => throw _privateConstructorUsedError;
   @override
-  String? get name => throw _privateConstructorUsedError;
+  String? get userName => throw _privateConstructorUsedError;
   @override
   String? get photourl => throw _privateConstructorUsedError;
+  @override
+  String? get telegramId => throw _privateConstructorUsedError;
+  @override
+  String? get createdAt => throw _privateConstructorUsedError;
+  @override
+  String? get updatedAt => throw _privateConstructorUsedError;
+  @override
+  String? get emailVerified => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$UsersCopyWith<_Users> get copyWith => throw _privateConstructorUsedError;

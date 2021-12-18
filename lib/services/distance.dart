@@ -4,7 +4,7 @@ import 'package:geolocator/geolocator.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 class LocationService {
-  Position _currentPosition = Position(
+  Position _currentPosition = const Position(
     longitude: 51.457838,
     latitude: -0.596342,
     accuracy: 0.0,

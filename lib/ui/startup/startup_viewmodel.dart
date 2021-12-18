@@ -1,6 +1,8 @@
 import 'dart:async';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
+import 'package:steps_count/api/database_api.dart';
 import 'package:steps_count/app/app.locator.dart';
 import 'package:steps_count/app/app.logger.dart';
 import 'package:steps_count/app/app.router.dart';
@@ -11,18 +13,19 @@ class StartUpViewModel extends BaseViewModel {
   final userService = locator<UserService>();
   final navigationService = locator<NavigationService>();
 
+  final _databaseApi = locator<DatabaseApi>();
   Future<void> runStartupLogic() async {
     setBusy(true);
-    if (userService.hasLoggedInUser) {
-      log.v('We have a user session on disk. Sync the user profile ...');
-      await userService.syncUserAccount();
-      final currentUser = userService.currentUser;
-      log.v('User sync complete. User profile: $currentUser');
-      setBusy(false);
-      navigationService.replaceWith(Routes.dashboardView);
+    log.v('No user on disk, navigate to the LoginView');
+    setBusy(false);
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    final String? jsonString = prefs.getString('user');
+    log.wtf(jsonString);
+    if (jsonString != null) {
+      final data = await _databaseApi.getUser(userEmail: jsonString);
+      userService.setUser(data);
+      navigationService.replaceWith(Routes.newDashboardView);
     } else {
-      log.v('No user on disk, navigate to the LoginView');
-      setBusy(false);
       navigationService.replaceWith(Routes.loginView);
     }
   }

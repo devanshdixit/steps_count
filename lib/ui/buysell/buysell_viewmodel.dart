@@ -107,9 +107,9 @@ class BuySellViewModel extends BaseViewModel {
   void onButtonClick(BuildContext context) {
     if (fiti5EditingController.text != '' &&
         covertedEditingController.text != '') {
-      double fiti5Num = double.parse(fiti5EditingController.text);
       double covertNum = double.parse(covertedEditingController.text);
       if (fiti5 > 0 && covertNum > 0) {
+        // ignore: avoid_print
         print('done');
       } else {
         const snackBar =

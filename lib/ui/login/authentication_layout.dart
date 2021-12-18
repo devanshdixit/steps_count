@@ -47,7 +47,7 @@ class AuthenticationLayout extends StatelessWidget {
           IconButton(
             padding: EdgeInsets.zero,
             alignment: Alignment.centerLeft,
-            icon: Icon(
+            icon: const Icon(
               Icons.arrow_back_ios,
               color: Colors.black,
             ),
@@ -56,10 +56,10 @@ class AuthenticationLayout extends StatelessWidget {
         title != null
             ? Text(
                 title!,
-                style: TextStyle(fontSize: 34),
+                style: const TextStyle(fontSize: 34),
               )
-            : SizedBox(),
-        title != null ? verticalSpaceSmall : SizedBox(),
+            : const SizedBox(),
+        title != null ? verticalSpaceSmall : const SizedBox(),
         subtitle != null
             ? Align(
                 alignment: Alignment.centerLeft,
@@ -71,9 +71,9 @@ class AuthenticationLayout extends StatelessWidget {
                   ),
                 ),
               )
-            : SizedBox(),
-        subtitle != null ? verticalSpaceRegular : SizedBox(),
-        form ?? SizedBox(),
+            : const SizedBox(),
+        subtitle != null ? verticalSpaceRegular : const SizedBox(),
+        form ?? const SizedBox(),
         verticalSpaceRegular,
         // if (onForgotPassword != null)
         //   Align(
@@ -91,7 +91,7 @@ class AuthenticationLayout extends StatelessWidget {
         if (validationMessage != null)
           Text(
             validationMessage!,
-            style: TextStyle(
+            style: const TextStyle(
               color: Colors.red,
               fontSize: kBodyTextSize,
             ),
@@ -156,7 +156,7 @@ class AuthenticationLayout extends StatelessWidget {
             onPressed: onSignInWithApple ?? () {},
             // darkMode: true,
             text: 'CONTINUE WITH APPLE',
-            style: AuthButtonStyle(
+            style: const AuthButtonStyle(
               iconSize: 24,
               height: 50,
               textStyle: TextStyle(color: Colors.white),
@@ -165,11 +165,11 @@ class AuthenticationLayout extends StatelessWidget {
           ),
         verticalSpaceRegular,
         busy
-            ? CircularProgressIndicator()
+            ? const CircularProgressIndicator()
             : GoogleAuthButton(
                 onPressed: onSignInWithGoogle ?? () {},
                 text: 'CONTINUE WITH GOOGLE',
-                style: AuthButtonStyle(
+                style: const AuthButtonStyle(
                   buttonColor: Color(0xff4285F4),
                   iconSize: 24,
                   iconBackground: Colors.white,

@@ -1,25 +1,39 @@
 import 'dart:async';
-
-import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:pedometer/pedometer.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:steps_count/app/app.locator.dart';
+import 'package:steps_count/app/app.logger.dart';
 import 'package:steps_count/app/app.router.dart';
+import 'package:steps_count/services/user_service.dart';
 
 class NewDashboardViewModel extends BaseViewModel {
-  // Step Counter
-  GlobalKey<CurvedNavigationBarState> _bottomNavigationKey = GlobalKey();
+  final log = getLogger('NewDashboardViewModel');
+  final userService = locator<UserService>();
+  final navigationService = locator<NavigationService>();
   int current_step = 0, bottomNavigator = 0;
   final _navigationService = locator<NavigationService>();
+  late Stream<StepCount> _stepCountStream;
+  late Stream<PedestrianStatus> _pedestrianStatusStream;
+  String status = '?';
+  double percentage = 0.01;
+  String profilepic = '';
+  late Timer timer;
+  int timehour = 0;
+  int start = 20, steps = 0;
+  List intervals = [
+    {
+      "steps": 0,
+    }
+  ];
 
   void navigateToSharePage() {
     _navigationService.navigateTo(Routes.shareView);
   }
 
-  List<Step> stepsList = [
+  List<Step> stepsList = const [
     Step(
       title: Text('Step 1'),
       content: Text('Hello!'),
@@ -42,27 +56,11 @@ class NewDashboardViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  final navigationService = locator<NavigationService>();
-  late Stream<StepCount> _stepCountStream;
-  late Stream<PedestrianStatus> _pedestrianStatusStream;
-  String status = '?';
-  double percentage = 0.01;
-  String profilepic = '';
-  late Timer timer;
-  int timehour = 0;
-  int start = 300, steps = 0;
-  List intervals = [
-    {
-      "steps": 0,
-    }
-  ];
-
   void updatePercentage() {
     setSteps(steps + 100);
   }
 
   void onStepCount(StepCount event) {
-    print(event);
     setSteps(steps + 1);
     double stp = ((steps / 5000) * 100).toPrecision(2);
     final v = stp / 100;
@@ -74,7 +72,6 @@ class NewDashboardViewModel extends BaseViewModel {
 
   void setSteps(int step) {
     steps = step;
-    print('updated');
     notifyListeners();
   }
 
@@ -84,7 +81,6 @@ class NewDashboardViewModel extends BaseViewModel {
   }
 
   void onPedestrianStatusChanged(PedestrianStatus event) {
-    print(event);
     setStatus(event.status);
   }
 
@@ -97,7 +93,7 @@ class NewDashboardViewModel extends BaseViewModel {
           timer.cancel();
           // data.add(FlSpot(1, (start + 3).toDouble()));
           steps = 0;
-          start = 300;
+          start = 20;
 
           notifyListeners();
           // _databaseApiService.updateSteps(
@@ -106,7 +102,7 @@ class NewDashboardViewModel extends BaseViewModel {
           //     "$start minutes": "${steps.toString()}",
           //   },
           // );
-          // log.v('Database updated');
+          log.v('Database updated');
           startTimer();
         } else {
           start--;
@@ -118,21 +114,17 @@ class NewDashboardViewModel extends BaseViewModel {
   }
 
   void onPedestrianStatusError(error) {
-    print('onPedestrianStatusError: $error');
     setStatus("Pedestrian Status not available");
-    print(status);
   }
 
   void onStepCountError(error) {
-    print('onStepCountError: $error');
+    setStatus('onStepCountError: $error');
     setSteps(-1);
   }
 
   void initPlatformState() async {
     var status = await Permission.activityRecognition.isGranted;
     if (status) {
-      print('permission granted');
-    } else {
       Permission.activityRecognition.request();
     }
     _pedestrianStatusStream = Pedometer.pedestrianStatusStream;

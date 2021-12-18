@@ -1,3 +1,5 @@
+// ignore_for_file: constant_identifier_names
+
 import 'dart:async';
 import 'dart:math';
 import 'package:flutter/material.dart';
@@ -11,7 +13,7 @@ const double CAMERA_TILT = 0;
 const double CAMERA_BEARING = 30;
 
 class BackMap extends StatefulWidget {
-  BackMap({
+  const BackMap({
     Key? key,
   }) : super(key: key);
   @override
@@ -19,11 +21,11 @@ class BackMap extends StatefulWidget {
 }
 
 class _BackMapState extends State<BackMap> {
-  Completer<GoogleMapController> _controller = Completer();
+  final Completer<GoogleMapController> _controller = Completer();
 
   late Location location;
 
-  CameraPosition initialLocation = CameraPosition(
+  CameraPosition initialLocation = const CameraPosition(
     zoom: CAMERA_ZOOM,
     bearing: CAMERA_BEARING,
     tilt: CAMERA_TILT,
@@ -66,8 +68,6 @@ class _BackMapState extends State<BackMap> {
       tilt: CAMERA_TILT,
       target: currentLocation,
     );
-
-    print('object2');
     location = Location();
     locationData =
         location.onLocationChanged.listen((LocationData? cLoc) async {
@@ -83,7 +83,6 @@ class _BackMapState extends State<BackMap> {
         }
       }
     });
-    print('object1');
     setState(() {
       maploading = false;
     });
@@ -133,7 +132,6 @@ class _BackMapState extends State<BackMap> {
     );
     final GoogleMapController controller = await completer.future;
     controller.animateCamera(CameraUpdate.newCameraPosition(cPosition));
-    print('databse updaeted');
   }
 
   void onMapCreated(GoogleMapController controller,

@@ -1,4 +1,3 @@
-import 'dart:async';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/percent_indicator.dart';
@@ -203,6 +202,7 @@ class DurationWidget extends StatelessWidget {
   }
 }
 
+// ignore: must_be_immutable
 class LineChartSample1 extends StatefulWidget {
   LineChartSample1({Key? key, required this.datas}) : super(key: key);
   List<FlSpot> datas;
@@ -287,6 +287,7 @@ class LineChartSample1State extends State<LineChartSample1> {
   }
 }
 
+// ignore: must_be_immutable
 class _LineChart extends StatelessWidget {
   _LineChart({required this.isShowingMainData, required this.data});
 

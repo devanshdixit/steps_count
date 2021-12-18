@@ -92,7 +92,7 @@ class DashboardView extends StatelessWidget {
                         color: Colors.red,
                         child: IconButton(
                           onPressed: () => model.testapi(),
-                          icon: Icon(Icons.edit, color: Colors.black),
+                          icon: const Icon(Icons.edit, color: Colors.black),
                         ),
                       ),
                       verticalSpaceRegular,
@@ -119,15 +119,15 @@ class DashboardView extends StatelessWidget {
                                 horizontal: 20, vertical: 20),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                const Text(
+                              children: const [
+                                Text(
                                   "Track your Workout",
                                   style: TextStyle(
                                     fontSize: 18,
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
-                                const SizedBox(
+                                SizedBox(
                                   height: 20,
                                 ),
                                 SizedBox(height: 400, child: BackMap()),

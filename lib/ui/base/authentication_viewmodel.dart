@@ -65,7 +65,7 @@ abstract class AuthenticationViewModel extends FormViewModel {
         user: Users(
           id: user.uid,
           email: user.email,
-          name: user.displayName ?? user.email,
+          userName: user.displayName ?? user.email,
           photourl: user.photoURL ??
               'https://img.icons8.com/color/48/000000/gender-neutral-user.png',
         ),

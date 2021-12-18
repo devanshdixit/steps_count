@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'dart:async';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:pedometer/pedometer.dart';
@@ -67,7 +69,7 @@ class DashboardViewModel extends BaseViewModel {
           _databaseApiService.updateSteps(
             user: userService.currentUser!,
             steps: {
-              "$start minutes": "${steps.toString()}",
+              "$start minutes": steps.toString(),
             },
           );
           log.v('Database updated');
