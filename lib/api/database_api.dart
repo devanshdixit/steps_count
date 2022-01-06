@@ -66,7 +66,7 @@ class DatabaseApi {
         if (res.statusCode == 200) {
           Map<String, dynamic> body = json.decode(res.body);
           final data = {
-            'id': body['data']['uuid'].toString(),
+            'id': body['data']['id'].toString(),
             'email': body['data']['email'],
             'userName': body['data']['name'],
             'photourl': body['data']['profile_pic'] ??
@@ -94,8 +94,8 @@ class DatabaseApi {
   Future<void> updateSteps({required Users user, required Object steps}) async {
     try {
       final res = await https.post(
-        Uri.parse('${Assets.databaseApiLink}/steps/${user.id}'),
-        body: steps,
+        Uri.parse(
+            '${Assets.databaseApiLink}/steps?user_id=${user.id}&steps=$steps'),
       );
       final body = json.decode(res.body);
       log.v('steps updated at $body');

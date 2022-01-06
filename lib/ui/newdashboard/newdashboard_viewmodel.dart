@@ -4,6 +4,7 @@ import 'package:pedometer/pedometer.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
+import 'package:steps_count/api/database_api.dart';
 import 'package:steps_count/app/app.locator.dart';
 import 'package:steps_count/app/app.logger.dart';
 import 'package:steps_count/app/app.router.dart';
@@ -13,6 +14,7 @@ class NewDashboardViewModel extends BaseViewModel {
   final log = getLogger('NewDashboardViewModel');
   final userService = locator<UserService>();
   final navigationService = locator<NavigationService>();
+  final _databaseApiService = locator<DatabaseApi>();
   int current_step = 0, bottomNavigator = 0;
   final _navigationService = locator<NavigationService>();
   late Stream<StepCount> _stepCountStream;
@@ -22,7 +24,7 @@ class NewDashboardViewModel extends BaseViewModel {
   String profilepic = '';
   late Timer timer;
   int timehour = 0;
-  int start = 20, steps = 0;
+  int start = 600, steps = 0;
   List intervals = [
     {
       "steps": 0,
@@ -61,6 +63,7 @@ class NewDashboardViewModel extends BaseViewModel {
   }
 
   void onStepCount(StepCount event) {
+    log.wtf('steps counted');
     setSteps(steps + 1);
     double stp = ((steps / 5000) * 100).toPrecision(2);
     final v = stp / 100;
@@ -68,6 +71,7 @@ class NewDashboardViewModel extends BaseViewModel {
       percentage = v;
       notifyListeners();
     }
+    notifyListeners();
   }
 
   void setSteps(int step) {
@@ -82,6 +86,7 @@ class NewDashboardViewModel extends BaseViewModel {
 
   void onPedestrianStatusChanged(PedestrianStatus event) {
     setStatus(event.status);
+    log.wtf(event.status);
   }
 
   void startTimer() {
@@ -93,15 +98,15 @@ class NewDashboardViewModel extends BaseViewModel {
           timer.cancel();
           // data.add(FlSpot(1, (start + 3).toDouble()));
           steps = 0;
-          start = 20;
-
+          start = 600;
           notifyListeners();
-          // _databaseApiService.updateSteps(
-          //   user: userService.currentUser!,
-          //   steps: {
-          //     "$start minutes": "${steps.toString()}",
-          //   },
-          // );
+          _databaseApiService.updateSteps(
+            user: userService.currentUser!,
+            steps: {
+              "$start minutes": "${steps.toString()}",
+            },
+          );
+          log.wtf("$start minutes ${steps.toString()}");
           log.v('Database updated');
           startTimer();
         } else {
@@ -124,15 +129,21 @@ class NewDashboardViewModel extends BaseViewModel {
 
   void initPlatformState() async {
     var status = await Permission.activityRecognition.isGranted;
-    if (status) {
+    if (!status) {
       Permission.activityRecognition.request();
     }
+    log.v('pedestriam started');
+
+    /// Init streams
     _pedestrianStatusStream = Pedometer.pedestrianStatusStream;
+    _stepCountStream = Pedometer.stepCountStream;
+
+    /// Listen to streams and handle errors
+    _stepCountStream.listen(onStepCount).onError(onStepCountError);
     _pedestrianStatusStream
         .listen(onPedestrianStatusChanged)
         .onError(onPedestrianStatusError);
-
-    _stepCountStream = Pedometer.stepCountStream;
-    _stepCountStream.listen(onStepCount).onError(onStepCountError);
   }
+
+  void updateUserSteps(int i, int j) {}
 }

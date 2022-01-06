@@ -22,9 +22,13 @@ class StartUpViewModel extends BaseViewModel {
     final String? jsonString = prefs.getString('user');
     log.wtf(jsonString);
     if (jsonString != null) {
-      final data = await _databaseApi.getUser(userEmail: jsonString);
-      userService.setUser(data);
-      navigationService.replaceWith(Routes.newDashboardView);
+      if (jsonString != "null") {
+        final data = await _databaseApi.getUser(userEmail: jsonString);
+        userService.setUser(data);
+        navigationService.replaceWith(Routes.newDashboardView);
+      } else {
+        navigationService.replaceWith(Routes.loginView);
+      }
     } else {
       navigationService.replaceWith(Routes.loginView);
     }

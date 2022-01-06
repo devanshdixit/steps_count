@@ -106,7 +106,7 @@ class LoginView extends StatelessWidget with $LoginView {
                                     color: Colors.white.withOpacity(0.8),
                                   ),
                                   label: SizedBox(
-                                    width: 180,
+                                    width: 210,
                                     child: Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.start,
@@ -195,7 +195,7 @@ class LoginView extends StatelessWidget with $LoginView {
                                     color: Colors.white.withOpacity(0.8),
                                   ),
                                   label: SizedBox(
-                                    width: 190,
+                                    width: 210,
                                     child: Row(
                                       children: const [
                                         Icon(

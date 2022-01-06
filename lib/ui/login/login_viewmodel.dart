@@ -37,9 +37,10 @@ class LoginViewModel extends AuthenticationViewModel {
     final res = await _databaseApi.loginUser(email: email, password: password);
     if (res['success']) {
       final SharedPreferences prefs = await SharedPreferences.getInstance();
-      final email = res['data']['email'];
-      prefs.setString('user', res['data']['email'].toString());
-      final data = await _databaseApi.getUser(userEmail: email);
+      final emailid =
+          res['data']['email'] == email ? res['data']['email'] : email;
+      prefs.setString('user', emailid.toString());
+      final data = await _databaseApi.getUser(userEmail: emailid);
       userService.setUser(data);
       navigationService.clearStackAndShow(Routes.startUpView);
     } else {
